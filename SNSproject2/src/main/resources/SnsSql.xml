@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper 
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace = "JoinMemberDao">
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="joinmember">
+		<selectKey resultType="integer" keyProperty="member_no" order="BEFORE">
+		    SELECT MEMBER_SEQ_NO.nextVal FROM DUAL
+		</selectKey>
+		INSERT INTO JOINMEMBER VALUES (#{member_no},#{member_id},#{member_password},#{member_name},#{member_birth},#{member_sex})
+	</insert>
+	
+    <!-- 로그인 -->
+    <select id="selectLoginUser" resultType="joinmember">
+    	SELECT member_id,member_no, member_password, member_name from JOINMEMBER where member_id=#{member_id} and member_password=#{member_password}
+    </select>
+	
+	<!-- 회원탈퇴 -->
+	<select id = "deleteMember" resultType="joinmember">
+		DELETE FROM JOINMEMBER WHERE member_password=#{member_password}
+	</select>
+	
+	<!-- 아이디 패스워드 일치여부 -->
+	<select id="matching" parameterType="joinmember" resultType="int">
+		SELECT COUNT(*) FROM JOINMEMBER where member_password=#{member_password}
+	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="selectFind" parameterType="joinmember" resultType="int">
+    	select count(*) from JOINMEMBER where member_id=#{member_id} and member_name=#{member_name} and password_a=#{password_a} 
+    </select>
+   
+   <!-- 비밀번호 변경 -->
+    <update id="UpdatePassword" parameterType="joinmember">
+   		UPDATE JOINMEMBER SET member_password = #{member_password}
+   			where member_id=#{member_id} 
+   				and member_name=#{member_name}
+   					and password_a=#{password_a}
+	</update>
+	
+	<!-- 아이디 중복검사 -->
+	<select id="selectCheckID" parameterType="joinmember" resultType="int">
+    	select count(*) from JOINMEMBER where member_id=#{member_id}
+    </select>
+   <!--   이름으로 사람들 찾기 -->
+     <select id="findPeople" parameterType="joinmember" resultType="joinmember">
+    	select member_name,member_id,member_no from JOINMEMBER where member_name=#{member_name}
+    </select>
+<!--     친구 신청하기 -->
+	<insert id="addfriend" parameterType="friends">
+	INSERT INTO FRIENDS VALUES (#{user1},#{user2},0,0)
+	</insert>
+	
+<!-- 친구신청목록 -->
+	<select id="selectfriends" resultType="friends">
+	select *from friends
+	</select>
+	
+<!-- 친구 수락 -->
+	<update id="allowfriends" parameterType="friends" >
+   		UPDATE FRIENDS SET FRIEND_TYPE = 1
+   			where user1=#{user1} 
+   			 AND  user2=#{user2} 
+	</update>
+</mapper>
