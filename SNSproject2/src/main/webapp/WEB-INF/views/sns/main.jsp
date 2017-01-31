@@ -9,6 +9,10 @@ function btnClick(){
 	document.form2.action = 'findpeople';
 	document.form2.submit();
 }
+function btnClick2(){
+	document.form2.action = 'myfriend';
+	document.form2.submit();
+}
 </script>
 </head>
 	<body>
@@ -18,7 +22,7 @@ function btnClick(){
 		    ${sessionScope.userLoginInfo.member_id}님 환영합니다<br>
 	  
 		    <input type="button" value="로그아웃" onclick="location.href='logout.do'">  
-		    <input type="button" value="친구조회" onclick="location.href='Myfriend'">
+		    <input type="button" value="친구조회" onclick="btnClick2()">
 		    <input type="button" value="회원수정페이지" onclick="location.href='memberUpdateForm.do'"> 
 		    <input type="button" value="회원탈퇴" onclick="location.href='deleteForm.do'">
 		
