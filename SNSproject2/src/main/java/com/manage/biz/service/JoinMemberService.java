@@ -16,7 +16,9 @@ public interface JoinMemberService {
 	int matching(JoinMember joinmember) throws Exception; //���̵� �н����� ��ġ ���� 
 	int CheckID(JoinMember joinmember) throws Exception; //���̵� �ߺ��˻�
 	List<JoinMember> findPeople(JoinMember joinmember) throws Exception;
+	List<JoinMember> myfriend(Friends friends) throws Exception;
 	int addfriend(Friends friends) throws Exception;
+	int addfriend2(Friends friends) throws Exception;
 	List<Friends> selectfriends() throws Exception;
 	void allowfriends(Friends friends) throws Exception;
 }

@@ -193,9 +193,22 @@ System.out.println("asdfasdfsafasd");
 		
 		joinmemberService.allowfriends(friends);
 		List<Friends> friendslist = joinmemberService.selectfriends();
+		joinmemberService.addfriend2(friends);
 		model.addAttribute("friends", friendslist);
 		return "sns/FriendList";
 	}
+	
+	//친구조회
+	@RequestMapping("/myfriend") 
+	public String Myfriend(Friends friends, Model model) throws Exception {
+	
+
+		List<JoinMember> my = joinmemberService.myfriend(friends);
+		model.addAttribute("myfriend", my);
+		
+		return "sns/Myfriend";
+
+	}	
 
 }
 

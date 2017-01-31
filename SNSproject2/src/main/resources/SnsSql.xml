@@ -52,6 +52,10 @@
 	<insert id="addfriend" parameterType="friends">
 	INSERT INTO FRIENDS VALUES (#{user1},#{user2},0,0)
 	</insert>
+<!--     친구 신청하기 -->
+	<insert id="addfriend2" parameterType="friends">
+	INSERT INTO FRIENDS VALUES (#{user2},#{user1},0,1)
+	</insert>
 	
 <!-- 친구신청목록 -->
 	<select id="selectfriends" resultType="friends">
@@ -64,4 +68,14 @@
    			where user1=#{user1} 
    			 AND  user2=#{user2} 
 	</update>
+	
+<!-- 친구조회 -->
+	<select id="myfriend" parameterType="friends" resultType="joinmember">
+    	select MEMBER_NO,MEMBER_ID,MEMBER_NAME,MEMBER_BIRTH,MEMBER_SEX 
+		FROM JOINMEMBER
+		WHERE member_NO=
+		(select user2 from friends
+		where user1 = #{user1}
+		AND FRIEND_TYPE=1)
+    </select>
 </mapper>

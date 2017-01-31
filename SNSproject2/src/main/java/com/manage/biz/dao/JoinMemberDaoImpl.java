@@ -72,9 +72,19 @@ public class JoinMemberDaoImpl implements JoinMemberDao{
 		List<JoinMember> peoplelist = sqlSession.selectList("JoinMemberDao.findPeople", joinmember);
 		return peoplelist;
 	}
+	
+	public List<JoinMember> myfriend(Friends friends) throws Exception{
+	
+		List<JoinMember> my = sqlSession.selectList("JoinMemberDao.myfriend", friends);
+		return my;
+	}
+	
 	public int addfriend(Friends friends) throws Exception{
 		int m_friend = sqlSession.insert("JoinMemberDao.addfriend", friends);
 		return m_friend ;
+	}
+	public int addfriend2(Friends friends) throws Exception{
+		return sqlSession.insert("JoinMemberDao.addfriend2", friends);
 	}
 	public List<Friends> selectfriends() throws Exception{
 		List<Friends> friendslist = sqlSession.selectList("JoinMemberDao.selectfriends");

@@ -62,10 +62,18 @@ public class JoinMemberServiceImpl implements JoinMemberService{
     	List<JoinMember> peoplelist = joinmemberDao.findPeople(joinmember);
     	return peoplelist;
 	}
+    public List<JoinMember> myfriend(Friends friends) throws Exception{
+    	List<JoinMember> my = joinmemberDao.myfriend(friends);
+    	return my;
+	}
     
 	public int addfriend(Friends friends) throws Exception{
 		int m_friend =  joinmemberDao.addfriend(friends);
 		return m_friend;
+	}
+	public int addfriend2(Friends friends) throws Exception{
+		return joinmemberDao.addfriend2(friends);
+
 	}
     public List<Friends> selectfriends() throws Exception{
     	List<Friends> friendslist= joinmemberDao.selectfriends();
