@@ -13,7 +13,13 @@ function AddFriend(toFriend){
 	document.form1.user2.value= toFriend;
 	document.form1.submit();
 }
-
+window.onload = function(){
+	   var msg = '${msg}';
+	   
+	       if ( msg != '')	{   
+		   alert('${msg}');
+	       }
+ }
 </script>
 
 </head>
@@ -22,7 +28,8 @@ function AddFriend(toFriend){
 
 <input type="text" value="${sessionScope.userLoginInfo.member_no}" name="user1">
 <input type="text" name="user2">
-
+<input type="hidden" name="member_name" value="${member_name }">
+<input type="hidden" name="member_id" value="${member_id }">
 <h1>${sessionScope.userLoginInfo.member_name}의 검색 목록</h1>
 
 <table border="1">

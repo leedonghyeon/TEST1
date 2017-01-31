@@ -46,7 +46,8 @@
     </select>
    <!--   이름으로 사람들 찾기 -->
      <select id="findPeople" parameterType="joinmember" resultType="joinmember">
-    	select member_name,member_id,member_no from JOINMEMBER where member_name=#{member_name}
+    	select member_name,member_id,member_no from JOINMEMBER 
+    	where member_name =#{member_name}
     </select>
 <!--     친구 신청하기 -->
 	<insert id="addfriend" parameterType="friends">
@@ -59,7 +60,8 @@
 	
 <!-- 친구신청목록 -->
 	<select id="selectfriends" resultType="friends">
-	select *from friends
+	select user1,user2,FRIEND_TYPE,FRIEND_STATUS from friends
+	where user2=#{user2}
 	</select>
 	
 <!-- 친구 수락 -->
@@ -71,11 +73,16 @@
 	
 <!-- 친구조회 -->
 	<select id="myfriend" parameterType="friends" resultType="joinmember">
-    	select MEMBER_NO,MEMBER_ID,MEMBER_NAME,MEMBER_BIRTH,MEMBER_SEX 
-		FROM JOINMEMBER
-		WHERE member_NO=
-		(select user2 from friends
-		where user1 = #{user1}
-		AND FRIEND_TYPE=1)
+ 		select member_no,member_name,member_birth,member_sex,member_id
+		from joinmember ,friends
+		where member_no=user1
+		and member_no!=#{user1} 
+		and friend_type=1
     </select>
+<!-- 친구 끊기 -->
+	<delete id="stopfriend" parameterType="friends" >
+   		delete from FRIENDS
+   		where  user2=#{user2} 
+   		or	user1=#{user2} 
+	</delete>
 </mapper>
