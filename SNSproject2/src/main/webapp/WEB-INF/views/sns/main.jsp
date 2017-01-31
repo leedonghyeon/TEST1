@@ -28,6 +28,12 @@ function btnClick2(){
 		
 		</form> 
 		   <br>
+		   
+		   <form action = "board">
+			<textarea rows="5" cols="30" name="contents"></textarea>
+			<input type="button" value="작성" onclick="confirm()" >
+	    </form>
+	    
 		  <form name='form2' action="findpeople">
 		   <input type="text" value="찾고자하는 이름" name="member_name" onfocus="clearText(this)">
 		   <input type="button" value="찾기" onclick="btnClick()" >
