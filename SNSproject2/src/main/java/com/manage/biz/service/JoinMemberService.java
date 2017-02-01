@@ -19,6 +19,8 @@ public interface JoinMemberService {
 	List<JoinMember> myfriend(Friends friends) throws Exception;
 	int addfriend(Friends friends) throws Exception;
 	List<Friends> selectfriends(Friends friends) throws Exception;
+	List<Friends> request(Friends friends) throws Exception;
 	void allowfriends(Friends friends) throws Exception;
+	void cancelfriends(Friends friends) throws Exception;
 	void stopfriend(Friends friends) throws Exception;
 }

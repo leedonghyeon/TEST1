@@ -194,6 +194,7 @@ public class JoinMemberController {
 		
 		return "sns/FriendList";
 	}
+	//친구 수락할 여부 현황
 	@RequestMapping("/allowfriends") 
 	public String allowfriends(Friends friends, Model model) throws Exception {
 
@@ -202,8 +203,24 @@ public class JoinMemberController {
 		model.addAttribute("friends", friendslist);
 		return "sns/FriendList";
 	}
+	// 친구 신청한 현황
+	@RequestMapping("/request") 
+	public String Request(Friends friends, Model model) throws Exception {
+		
+		List<Friends> re = joinmemberService.request(friends);
+		model.addAttribute("friends", re);
+		return "sns/Request";
+	}
+	//친구 신청 취소하기
+	@RequestMapping("/cancelfriends") 
+	public String cancelfriends(Friends friends, Model model) throws Exception {
+
+		joinmemberService.cancelfriends(friends);
+		List<Friends> re = joinmemberService.request(friends);
+		model.addAttribute("friends", re);
 	
-	
+		return "sns/Request";
+	}
 	//친구조회
 	@RequestMapping("/myfriend") 
 	public String Myfriend(Friends friends, Model model,HttpServletRequest req) throws Exception {
@@ -227,6 +244,5 @@ public class JoinMemberController {
 		return "redirect:myfriend?user1="+req.getParameter("user1")+"&msg1="+msg1;
 	}	
 	
-
 }
 

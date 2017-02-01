@@ -7,9 +7,39 @@ public class JoinMember {
 	String member_name;
 	String member_birth;
 	String member_sex;
-	String password_q;//ºñ¹Ð¹øÈ£ Áú¹®
-	String password_a;//ºñ¹Ð¹øÈ£ ´ä
+	String password_q;//ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½ï¿½ï¿½
+	String password_a;//ï¿½ï¿½Ð¹ï¿½È£ ï¿½ï¿½
+	String member_email;
+	String member_phone;
+	String member_join;
+	String member_privacy;
 	
+	
+	
+	public String getMember_email() {
+		return member_email;
+	}
+	public void setMember_email(String member_email) {
+		this.member_email = member_email;
+	}
+	public String getMember_phone() {
+		return member_phone;
+	}
+	public void setMember_phone(String member_phone) {
+		this.member_phone = member_phone;
+	}
+	public String getMember_join() {
+		return member_join;
+	}
+	public void setMember_join(String member_join) {
+		this.member_join = member_join;
+	}
+	public String getMember_privacy() {
+		return member_privacy;
+	}
+	public void setMember_privacy(String member_privacy) {
+		this.member_privacy = member_privacy;
+	}
 	public int getMember_no() {
 		return member_no;
 	}

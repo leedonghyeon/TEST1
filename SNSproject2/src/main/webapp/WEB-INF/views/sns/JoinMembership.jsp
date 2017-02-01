@@ -155,7 +155,10 @@
            <div id="checkPwd"></div> <!-- 비밀번호 유효성 체크 메세지 -->
            <input type = "password" id = "password_re" value = "비밀번호" onfocus="clearText(this)" onkeyup="CheckValue()">
            <div id="checkValue"></div> <!-- 비밀번호 일치 여부 메세지  -->
-          
+           <input type = "text" id = "email" value = "email" name="member_email" onfocus="clearText(this)" onkeyup="CheckValue()"><br>
+            <input type = "text" id = "phone" value = "전화번호" name="member_phone" onfocus="clearText(this)" onkeyup="CheckValue()"><br>
+ 		    <input type = "text" id = "join" value ="가입날짜" name="member_join" onfocus="clearText(this)" onkeyup="CheckValue()"><br>
+ 		      <input type = "text" id = "privacy" value ="공개여부" name="member_privacy" onfocus="clearText(this)" onkeyup="CheckValue()"><br>
  		   <select  name="password_q" >
 	         <option value="">질문 </option>
 			 <option value="아버지의 성함은?">아버지의 성함은?</option>

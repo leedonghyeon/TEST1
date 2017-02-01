@@ -9,7 +9,7 @@
 		<selectKey resultType="integer" keyProperty="member_no" order="BEFORE">
 		    SELECT MEMBER_SEQ_NO.nextVal FROM DUAL
 		</selectKey>
-		INSERT INTO JOINMEMBER VALUES (#{member_no},#{member_id},#{member_password},#{member_name},#{member_birth},#{member_sex})
+		INSERT INTO JOINMEMBER VALUES (#{member_no},#{member_id},#{member_password},#{member_name},#{member_birth},#{member_sex},#{password_q},#{password_a},#{member_email},#{member_phone},#{member_join},#{member_privacy})
 	</insert>
 	
     <!-- 로그인 -->
@@ -52,6 +52,7 @@
 <!--     친구 신청하기 -->
 	<insert id="addfriend" parameterType="friends">
 	INSERT INTO FRIENDS VALUES (#{user1},#{user2},0,0)
+	
 	</insert>
 <!--     친구 신청하기 -->
 	<insert id="addfriend2" parameterType="friends">
@@ -63,6 +64,12 @@
 	select user1,user2,FRIEND_TYPE,FRIEND_STATUS from friends
 	where user2=#{user2}
 	</select>
+<!-- 친구신청목록2 -->
+	<select id="request" resultType="friends">
+	select user1,user2,FRIEND_TYPE,FRIEND_STATUS from friends
+	where user1=#{user1}
+	and friend_type=0
+	</select>
 	
 <!-- 친구 수락 -->
 	<update id="allowfriends" parameterType="friends" >
@@ -70,6 +77,12 @@
    			where user1=#{user1} 
    			 AND  user2=#{user2} 
 	</update>
+<!-- 친구 신청 취소 -->
+	<delete id="cancelfriends" parameterType="friends" >
+   		delete from FRIENDS
+   		where  user1=#{user1} 
+   		and	user2=#{user2} 
+	</delete>
 	
 <!-- 친구조회 -->
 	<select id="myfriend" parameterType="friends" resultType="joinmember">
@@ -79,6 +92,7 @@
 		and member_no!=#{user1} 
 		and friend_type=1
     </select>
+    
 <!-- 친구 끊기 -->
 	<delete id="stopfriend" parameterType="friends" >
    		delete from FRIENDS

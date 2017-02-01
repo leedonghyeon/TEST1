@@ -14,7 +14,7 @@ function btnClick2(){
 	document.form1.submit();
 }
 function btnClick3(){
-	document.form1.action = '';
+	document.form1.action = 'request';
 	document.form1.submit();
 }
 function btnClick4(){
@@ -33,8 +33,8 @@ function btnClick4(){
 	  
 		    <input type="button" value="로그아웃" onclick="location.href='logout.do'">  
 		    <input type="button" value="친구조회" onclick="btnClick2()">
-	<!-- 	    <input type="button" value="친구신청현황" onclick="btnClick3()"> -->
-		     <input type="button" value="친구수락요청" onclick="btnClick4()">
+ 	        <input type="button" value="친구신청현황" onclick="btnClick3()"> 
+		    <input type="button" value="친구수락요청" onclick="btnClick4()">
 		    <input type="button" value="회원수정페이지" onclick="location.href='memberUpdateForm.do'"> 
 		    <input type="button" value="회원탈퇴" onclick="location.href='deleteForm.do'">
 		
