@@ -134,6 +134,7 @@
       	   
       	       if ( msg != '')	{   
       		   alert('${msg2}');
+      		   document.form2.member_name.value = '${joinmember.member_name}';
       	       document.form2.member_id.value = '${joinmember.member_id}';
       	       }
         }

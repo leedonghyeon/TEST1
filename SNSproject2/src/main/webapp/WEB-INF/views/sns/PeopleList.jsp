@@ -9,9 +9,11 @@
 
 <script>
 function AddFriend(toFriend){
+
 	alert(toFriend);
 	document.form1.user2.value= toFriend;
 	document.form1.submit();
+
 }
 window.onload = function(){
 	   var msg = '${msg}';
@@ -28,24 +30,37 @@ window.onload = function(){
 
 <input type="text" value="${sessionScope.userLoginInfo.member_no}" name="user1">
 <input type="text" name="user2">
-<input type="hidden" name="member_name" value="${member_name }">
-<input type="hidden" name="member_id" value="${member_id }">
-<h1>${sessionScope.userLoginInfo.member_name}의 검색 목록</h1>
+<input type="text" name="member_name" id="member_name" value="${member_name}">
+<input type="text" name="member_no" id="member_no" value="${sessionScope.userLoginInfo.member_no}">
 
+<h1>${sessionScope.userLoginInfo.member_name}의 검색 목록</h1>
 <table border="1">
 <tr>
     <th width="100">번호</th>
 	<th width="100">이름</th>
 	<th width="100">이메일</th>
+	<th width="100">상태</th>
 	<th width="100">친구신청</th>
 </tr>
 <c:forEach var="A" items="${joinmember}">
 <tr>
 	<td align ="center">${A.member_no}</td>
 	<td align ="center">${A.member_name}</td>
-	<td align ="center">${A.member_id}</td>
+	<td align ="center">${A.member_birth}</td>
+	<td align ="center">${A.friend_status}</td>
+	<c:if test="${A.friend_status == 0}">
+	<td align ="center"><input type="button" value="친구" disabled='disabled'></td>
+	</c:if>
+	<c:if test="${A.friend_status eq 2}">
+	<td align ="center"><input type="button" value="신청중" disabled='disabled'></td>
+	</c:if>
+	<c:if test="${A.friend_status eq 3}">
+	<td align ="center"><input type="button" value="수락대기" disabled='disabled'></td>
+	</c:if>
+	<c:if test="${A.friend_status eq 9}">
 	<td align ="center"><input type="button" value="신청" onclick="AddFriend(${A.member_no})"></td>
-</tr>
+	</c:if>
+	</tr>
 </c:forEach>
 </table>
 </form>

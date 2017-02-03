@@ -2,20 +2,28 @@ package com.manage.biz.vo;
 
 public class JoinMember {
 	int member_no;
+	int friend_status;
+
+
 	String member_id;
 	String member_password;
 	String member_name;
 	String member_birth;
 	String member_sex;
-	String password_q;//��й�ȣ ����
-	String password_a;//��й�ȣ ��
+	String password_q;//占쏙옙橘占싫� 占쏙옙占쏙옙
+	String password_a;//占쏙옙橘占싫� 占쏙옙
 	String member_email;
 	String member_phone;
 	String member_join;
 	String member_privacy;
 	
 	
-	
+	public int getFriend_status() {
+		return friend_status;
+	}
+	public void setFriend_status(int friend_status) {
+		this.friend_status = friend_status;
+	}
 	public String getMember_email() {
 		return member_email;
 	}

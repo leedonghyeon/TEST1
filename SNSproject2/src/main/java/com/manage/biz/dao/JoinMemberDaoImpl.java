@@ -20,7 +20,7 @@ public class JoinMemberDaoImpl implements JoinMemberDao{
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	/*ȸ������ */
+	/*회占쏙옙占쏙옙占쏙옙 */
 	public int insertJoinMember(JoinMember insert_member) throws Exception{
 		sqlSession.insert("JoinMemberDao.insertMember", insert_member);
 		int m_seq = insert_member.getMember_no();
@@ -31,7 +31,7 @@ public class JoinMemberDaoImpl implements JoinMemberDao{
 		return sqlSession.selectOne("JoinMemberDao.JoinMember", member_id);
 	}
 	
-	/*�α��� ó��*/
+	/*占싸깍옙占쏙옙 처占쏙옙*/
 	public JoinMember findByUserIdAndPassword(String userId, String password) throws Exception{
         Map<String, String> paramMap = new HashMap<String, String>();
         paramMap.put("member_id", userId);
@@ -40,35 +40,34 @@ public class JoinMemberDaoImpl implements JoinMemberDao{
         return sqlSession.selectOne("JoinMemberDao.selectLoginUser", paramMap);
 	}
 	
-	/*ȸ��Ż��*/
+	/*회占쏙옙탈占쏙옙*/
 	public JoinMember deleteMemeber(JoinMember member) throws Exception{
 		return sqlSession.selectOne("JoinMemberDao.deleteMember", member);
 	}
 	
-	/*��й�ȣ ã��*/
+	/*占쏙옙橘占싫� 찾占쏙옙*/
 	public int findPassword(JoinMember joinmember) throws Exception{
 		int m_password = sqlSession.selectOne("JoinMemberDao.selectFind", joinmember);
 		return m_password;
 	}
 	
-	/*��й�ȣ ����*/
+	/*占쏙옙橘占싫� 占쏙옙占쏙옙*/
 	public void updatePassword(JoinMember joinmember) throws Exception{
 		sqlSession.update("JoinMemberDao.UpdatePassword", joinmember);
 	}
 
-	/*���̵� ��й�ȣ ��ġ ����*/
+	/*占쏙옙占싱듸옙 占쏙옙橘占싫� 占쏙옙치 占쏙옙占쏙옙*/
 	public int matching(JoinMember joinmember) throws Exception{
 		int matching_ok = sqlSession.selectOne("JoinMemberDao.matching", joinmember);
 		return matching_ok;
 	}
 	
-	/*���̵� �ߺ��˻�*/
+	/*占쏙옙占싱듸옙 占쌩븝옙占싯삼옙*/
 	public int CheckID(JoinMember joinmember) throws Exception{
 		int m_id = sqlSession.selectOne("JoinMemberDao.selectCheckID", joinmember);
 		return m_id;
 	}	
 	public List<JoinMember> findPeople(JoinMember joinmember) throws Exception{
-		System.out.println("dao list");
 		List<JoinMember> peoplelist = sqlSession.selectList("JoinMemberDao.findPeople", joinmember);
 		return peoplelist;
 	}
@@ -79,12 +78,11 @@ public class JoinMemberDaoImpl implements JoinMemberDao{
 		return my;
 	}
 	
-	public int addfriend(Friends friends) throws Exception{
-		int m_friend = sqlSession.insert("JoinMemberDao.addfriend", friends);
-		return m_friend ;
+	public void addfriend(Friends friends) throws Exception{
+		sqlSession.insert("JoinMemberDao.addfriend", friends);
 	}
-	public int addfriend2(Friends friends) throws Exception{
-		return sqlSession.insert("JoinMemberDao.addfriend2", friends);
+	public void addfriend2(Friends friends) throws Exception{
+		sqlSession.insert("JoinMemberDao.addfriend2", friends);
 	}
 	public List<Friends> selectfriends(Friends friends) throws Exception{
 		List<Friends> friendslist = sqlSession.selectList("JoinMemberDao.selectfriends",friends);

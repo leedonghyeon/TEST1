@@ -45,18 +45,21 @@
     	select count(*) from JOINMEMBER where member_id=#{member_id}
     </select>
    <!--   이름으로 사람들 찾기 -->
-     <select id="findPeople" parameterType="joinmember" resultType="joinmember">
-    	select member_name,member_id,member_no from JOINMEMBER 
-    	where member_name =#{member_name}
+     <select id="findPeople" parameterType="joinmember" resultType="joinmember" >
+    	select member_no,member_name,member_birth,9 AS friend_status
+		from JOINMEMBER
+		where member_name like #{member_name}||'%' and member_no!=#{member_no}
+		and member_no not in (select user2 from friends where user1=#{member_no})
+		union
+		select user2,member_name,member_birth,friend_status from friends,joinmember where user1=#{member_no} and member_no=user2
     </select>
 <!--     친구 신청하기 -->
 	<insert id="addfriend" parameterType="friends">
-	INSERT INTO FRIENDS VALUES (#{user1},#{user2},0,0)
-	
+	INSERT INTO FRIENDS VALUES (#{user1},#{user2},2,0)
 	</insert>
 <!--     친구 신청하기 -->
 	<insert id="addfriend2" parameterType="friends">
-	INSERT INTO FRIENDS VALUES (#{user2},#{user1},0,1)
+	INSERT INTO FRIENDS VALUES (#{user2},#{user1},3,0)
 	</insert>
 	
 <!-- 친구신청목록 -->
@@ -73,9 +76,11 @@
 	
 <!-- 친구 수락 -->
 	<update id="allowfriends" parameterType="friends" >
-   		UPDATE FRIENDS SET FRIEND_TYPE = 1
-   			where user1=#{user1} 
-   			 AND  user2=#{user2} 
+   		UPDATE FRIENDS SET FRIEND_TYPE = 1,FRIEND_STATUS=0 
+   			where (user1=#{user1} 
+   			 AND  user2=#{user2})
+   			 OR (user2=#{user1} 
+   			 AND user1=#{user2})
 	</update>
 <!-- 친구 신청 취소 -->
 	<delete id="cancelfriends" parameterType="friends" >
