@@ -13,6 +13,7 @@
 	<typeAliases>
 		<typeAlias type="com.manage.biz.vo.JoinMember" alias="joinmember"/>
 		<typeAlias type="com.manage.biz.vo.Friends" alias="friends"/>
+		<typeAlias type="com.manage.biz.vo.Board" alias="board"/>
 	</typeAliases>
 	
 	<mappers>

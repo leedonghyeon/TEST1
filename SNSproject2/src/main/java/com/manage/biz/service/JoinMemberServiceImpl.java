@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.manage.biz.dao.JoinMemberDao;
 import com.manage.biz.vo.JoinMember;
+import com.manage.biz.vo.Board;
 import com.manage.biz.vo.Friends;
 
 
@@ -19,6 +20,10 @@ public class JoinMemberServiceImpl implements JoinMemberService{
 	public int insertJoinMember(JoinMember joinmember) throws Exception{
 		int m_seq =  joinmemberDao.insertJoinMember(joinmember);
 		return m_seq;
+	}
+	
+	public void updateUserInfo(JoinMember joinmember) throws Exception{
+		joinmemberDao.updateUserInfo(joinmember);
 	}
 	
 	public JoinMember getAllMember(String member_id) throws Exception{
@@ -91,6 +96,21 @@ public class JoinMemberServiceImpl implements JoinMemberService{
     }
     public void stopfriend(Friends friends) throws Exception{
     	joinmemberDao.stopfriend(friends);
+    }
+    public int insertBoardContent(Board board_contents) throws Exception{
+    	int b_seq =  joinmemberDao.insertBoardContent(board_contents);
+		return b_seq;
+    }
+
+    //�Խñ� ��ȸ
+    public List<Board> listBoardContents(JoinMember joinmember) throws Exception{
+    	List<Board> board_contents_list = joinmemberDao.listBoardContents(joinmember);
+    	return board_contents_list;
+    }
+    
+    //�Խù� ����
+    public Board removeBoardContent(Board board_num) throws Exception{
+    	return joinmemberDao.deleteBoardContent(board_num);
     }
 
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 
 import com.manage.biz.vo.JoinMember;
+import com.manage.biz.vo.Board;
 import com.manage.biz.vo.Friends;
 
 
@@ -25,6 +26,12 @@ public class JoinMemberDaoImpl implements JoinMemberDao{
 		sqlSession.insert("JoinMemberDao.insertMember", insert_member);
 		int m_seq = insert_member.getMember_no();
 		return m_seq;
+	}
+	
+	public void updateUserInfo(JoinMember joinmember) throws Exception{
+		System.out.println(joinmember.getMember_id());
+		System.out.println(joinmember.getMember_password());
+		sqlSession.update("JoinMemberDao.UpdateUserInfo", joinmember);
 	}
 	
 	public JoinMember selectJoinMember(String member_id) throws Exception{
@@ -101,6 +108,21 @@ public class JoinMemberDaoImpl implements JoinMemberDao{
 	public void stopfriend(Friends friends) throws Exception{
 		sqlSession.delete("JoinMemberDao.stopfriend", friends);
 	}
-
+	public int insertBoardContent(Board board_contents) throws Exception{
+		sqlSession.insert("JoinMemberDao.insertBoardContent", board_contents);
+		int b_seq = board_contents.getBoard_no();
+		return b_seq;
+	} 
+	
+	/*�Խñ� ��ȸ*/
+	public List<Board> listBoardContents(JoinMember joinmember) throws Exception{
+		List<Board> board_contents_list = sqlSession.selectList("JoinMemberDao.selectBoardContent", joinmember);
+		return board_contents_list;
+	}
+	
+	/*�Խù� ����*/
+	public Board deleteBoardContent(Board board) throws Exception{
+		return sqlSession.selectOne("JoinMemberDao.deleteBoardContent", board);
+	}
 	
 }

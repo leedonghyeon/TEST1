@@ -12,6 +12,11 @@
 		INSERT INTO JOINMEMBER VALUES (#{member_no},#{member_id},#{member_password},#{member_name},#{member_birth},#{member_sex},#{password_q},#{password_a},#{member_email},#{member_phone},#{member_join},#{member_privacy})
 	</insert>
 	
+	<!-- 회원정보 수정 -->
+	<update id="UpdateUserInfo" parameterType="joinmember">
+   		UPDATE JOINMEMBER SET member_password=#{member_password} WHERE member_id=#{member_id}	
+	</update>
+	
     <!-- 로그인 -->
     <select id="selectLoginUser" resultType="joinmember">
     	SELECT member_id,member_no, member_password, member_name from JOINMEMBER where member_id=#{member_id} and member_password=#{member_password}
@@ -104,4 +109,55 @@
    		where  user2=#{user2} 
    		or	user1=#{user2} 
 	</delete>
+	
+	<!-- 게시글 작성 -->
+    <insert id="insertBoardContent" parameterType="board">
+		<selectKey resultType="integer" keyProperty="board_no" order="BEFORE">
+		    SELECT BOARD_SEQ_NO.nextVal FROM DUAL
+		</selectKey>
+		INSERT INTO BOARD VALUES (#{board_no},#{board_writer},#{board_contents},to_char(sysdate, 'YYYYMMDDhh24miss'),to_char(sysdate, 'hh24miss'))
+	</insert>
+	
+	<!-- 게시글 조회 : 테이블 전체 조회-->
+	<!-- 버전 2 : 게시물 조회 -> 내가 쓴 글과 내 친구가 작성한 게시물만 보임 -->
+	<select id="selectBoardContent" resultType="board" parameterType="joinmember">
+		<!-- select board.*, case when to_char(sysdate, 'YYYYMMDD') = substr(board_date,0,8) 
+            then  trunc((sysdate - to_date(board_date,'YYYYMMDDHH24MISS'))* 24 , 0) || ' hours ago'
+       		else trunc((sysdate - to_date(board_date,'YYYYMMDDHH24MISS')) , 0) || ' days ago' end diff_time
+		from board -->
+		select * from (select board.*, case
+            when to_char(sysdate, 'YYYYMMDDHH24MI') = substr(board_date,0,12) 
+            then trunc((sysdate - to_date(board_date,'YYYYMMDDHH24MISS'))* 24 * 60 * 60 , 0) || ' seconds ago'
+            when to_char(sysdate, 'YYYYMMDDHH24') = substr(board_date,0,10) 
+            then round((sysdate - to_date(board_date,'YYYYMMDDHH24MISS'))* 24 * 60 , 0) || ' mins ago'
+            when to_char(sysdate, 'YYYYMMDD') = substr(board_date,0,8)
+            then round((sysdate - to_date(board_date,'YYYYMMDDHH24MISS'))*24 , 0) || ' hours ago'
+            else round((sysdate - to_date(board_date,'YYYYMMDDHH24MISS')) , 0) || ' days ago'  
+            end diff_time
+			from board
+		where board_writer=#{member_id}
+		union
+		select board.*, case
+            when to_char(sysdate, 'YYYYMMDDHH24MI') = substr(board_date,0,12) 
+            then trunc((sysdate - to_date(board_date,'YYYYMMDDHH24MISS'))* 24 * 60 * 60 , 0) || ' seconds ago'
+            when to_char(sysdate, 'YYYYMMDDHH24') = substr(board_date,0,10) 
+            then round((sysdate - to_date(board_date,'YYYYMMDDHH24MISS'))* 24 * 60 , 0) || ' mins ago'
+            when to_char(sysdate, 'YYYYMMDD') = substr(board_date,0,8)
+            then round((sysdate - to_date(board_date,'YYYYMMDDHH24MISS'))*24 , 0) || ' hours ago'
+            else round((sysdate - to_date(board_date,'YYYYMMDDHH24MISS')) , 0) || ' days ago'  
+            end diff_time
+			from board
+		where board.board_writer in (select b.MEMBER_ID 
+		                           from friends a, joinmember b
+		                           where a.FRIEND_TYPE = '1'  
+		                           and a.user1 = b.MEMBER_NO 
+		                           and (a.user1=#{member_no} or a.user2 = #{member_no}))
+		                           )
+		                           order by board_date desc		                                
+	</select>
+	
+	<!-- 게시물 삭제 -->
+	<select id="deleteBoardContent" parameterType="board" resultType="board">
+		DELETE FROM BOARD WHERE board_no=#{board_no}
+	</select>
 </mapper>

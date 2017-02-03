@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.manage.biz.service.JoinMemberService;
 import com.manage.biz.vo.JoinMember;
-
+import com.manage.biz.vo.Board;
 import com.manage.biz.vo.Friends;
 
 /**
@@ -244,5 +244,27 @@ public class JoinMemberController {
 		return "redirect:myfriend?user1="+req.getParameter("user1")+"&msg1="+msg1;
 	}	
 	
+	//게시물 작성
+		@RequestMapping("/writeBoard")
+		public String board(JoinMember joinmember, Board board_contents, HttpSession session, Model model) throws Exception {
+			
+			model.addAttribute("joinmember", joinmember);
+			JoinMember sessionMember = (JoinMember)session.getAttribute("userLoginInfo");
+			board_contents.setBoard_writer(sessionMember.getMember_id());
+			joinmemberService.insertBoardContent(board_contents);
+			
+			return "redirect:goMain";
+			
+		}
+
+		//게시글 삭제
+		@RequestMapping("/deleteBoardContent")
+	    public String deleteBoardContent(Board board, Model model, HttpSession session) throws Exception{
+			
+			joinmemberService.removeBoardContent(board);
+			
+			return "redirect:goMain";
+			
+	    }
 }
 
