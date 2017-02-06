@@ -25,16 +25,18 @@ function cancel(can){
 <table border="1">
 <tr>
 	<th width="100">상대</th>
+	<th width="100">이름</th>
 	<th width="100">상태</th>
 	<th width="100">타입</th>
 	<th width="100">취소</th>
 </tr>
 <c:forEach var="A" items="${friends}">
 <tr>
-	<td align ="center">${A.user2}</td>
-	<td align ="center">${A.friend_status}</td>
-	<td align ="center">${A.friend_type}</td>
-	<td align ="center"><input type="button" value="취소" onclick="cancel(${A.user2})"></td>
+	<td align ="center">${A.USER2}</td>
+	<td align ="center">${A.MEMBER_NAME}</td>
+	<td align ="center">${A.FRIEND_STATUS}</td>
+	<td align ="center">${A.FRIEND_TYPE}</td>
+	<td align ="center"><input type="button" value="취소" onclick="cancel(${A.USER2})"></td>
 </tr>
 </c:forEach>
 </table>

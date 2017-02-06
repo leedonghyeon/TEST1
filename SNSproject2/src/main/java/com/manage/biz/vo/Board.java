@@ -1,42 +1,56 @@
 package com.manage.biz.vo;
 
 public class Board {
-	int board_no;
-	String board_writer;
-	String board_contents;
-	String board_date;
-	String board_time;
+	String bno;
+	int uno;
+	String bcontent;
+	String bcreatetime;
+	String bmodifiedtime;
+	String attachfile;
+	String bprivacy;
 	String diff_time;
-	
-	public int getBoard_no() {
-		return board_no;
+
+	public String getBno() {
+		return bno;
 	}
-	public void setBoard_no(int board_no) {
-		this.board_no = board_no;
+	public void setBno(String bno) {
+		this.bno = bno;
 	}
-	public String getBoard_writer() {
-		return board_writer;
+	public int getUno() {
+		return uno;
 	}
-	public void setBoard_writer(String board_writer) {
-		this.board_writer = board_writer;
+	public void setUno(int uno) {
+		this.uno = uno;
 	}
-	public String getBoard_contents() {
-		return board_contents;
+	public String getBcontent() {
+		return bcontent;
 	}
-	public void setBoard_contents(String board_contents) {
-		this.board_contents = board_contents;
+	public void setBcontent(String bcontent) {
+		this.bcontent = bcontent;
 	}
-	public String getBoard_date() {
-		return board_date;
+	public String getBcreatetime() {
+		return bcreatetime;
 	}
-	public void setBoard_date(String board_date) {
-		this.board_date = board_date;
+	public void setBcreatetime(String bcreatetime) {
+		this.bcreatetime = bcreatetime;
 	}
-	public String getBoard_time() {
-		return board_time;
+	public String getBmodifiedtime() {
+		return bmodifiedtime;
 	}
-	public void setBoard_time(String board_time) {
-		this.board_time = board_time;
+	public void setBmodifiedtime(String bmodifiedtime) {
+		this.bmodifiedtime = bmodifiedtime;
+	}
+	public String getAttachfile() {
+		return attachfile;
+	}
+	public void setAttachfile(String attachfile) {
+		this.attachfile = attachfile;
+	}
+	public String getBprivacy() {
+		return bprivacy;
+	}
+	public void setBprivacy(String bprivacy) {
+		this.bprivacy = bprivacy;
 	}
 	public String getDiff_time() {
 		return diff_time;
@@ -44,5 +58,4 @@ public class Board {
 	public void setDiff_time(String diff_time) {
 		this.diff_time = diff_time;
 	}
-	
 }

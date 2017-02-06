@@ -21,7 +21,7 @@ public class JoinMemberDaoImpl implements JoinMemberDao{
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
-	/*회占쏙옙占쏙옙占쏙옙 */
+	/*�쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕 */
 	public int insertJoinMember(JoinMember insert_member) throws Exception{
 		sqlSession.insert("JoinMemberDao.insertMember", insert_member);
 		int m_seq = insert_member.getMember_no();
@@ -38,7 +38,7 @@ public class JoinMemberDaoImpl implements JoinMemberDao{
 		return sqlSession.selectOne("JoinMemberDao.JoinMember", member_id);
 	}
 	
-	/*占싸깍옙占쏙옙 처占쏙옙*/
+	/*�뜝�떥源띿삕�뜝�룞�삕 泥섇뜝�룞�삕*/
 	public JoinMember findByUserIdAndPassword(String userId, String password) throws Exception{
         Map<String, String> paramMap = new HashMap<String, String>();
         paramMap.put("member_id", userId);
@@ -47,29 +47,29 @@ public class JoinMemberDaoImpl implements JoinMemberDao{
         return sqlSession.selectOne("JoinMemberDao.selectLoginUser", paramMap);
 	}
 	
-	/*회占쏙옙탈占쏙옙*/
+	/*�쉶�뜝�룞�삕�깉�뜝�룞�삕*/
 	public JoinMember deleteMemeber(JoinMember member) throws Exception{
 		return sqlSession.selectOne("JoinMemberDao.deleteMember", member);
 	}
 	
-	/*占쏙옙橘占싫� 찾占쏙옙*/
+	/*�뜝�룞�삕艅섇뜝�떕占� 李얍뜝�룞�삕*/
 	public int findPassword(JoinMember joinmember) throws Exception{
 		int m_password = sqlSession.selectOne("JoinMemberDao.selectFind", joinmember);
 		return m_password;
 	}
 	
-	/*占쏙옙橘占싫� 占쏙옙占쏙옙*/
+	/*�뜝�룞�삕艅섇뜝�떕占� �뜝�룞�삕�뜝�룞�삕*/
 	public void updatePassword(JoinMember joinmember) throws Exception{
 		sqlSession.update("JoinMemberDao.UpdatePassword", joinmember);
 	}
 
-	/*占쏙옙占싱듸옙 占쏙옙橘占싫� 占쏙옙치 占쏙옙占쏙옙*/
+	/*�뜝�룞�삕�뜝�떛�벝�삕 �뜝�룞�삕艅섇뜝�떕占� �뜝�룞�삕移� �뜝�룞�삕�뜝�룞�삕*/
 	public int matching(JoinMember joinmember) throws Exception{
 		int matching_ok = sqlSession.selectOne("JoinMemberDao.matching", joinmember);
 		return matching_ok;
 	}
 	
-	/*占쏙옙占싱듸옙 占쌩븝옙占싯삼옙*/
+	/*�뜝�룞�삕�뜝�떛�벝�삕 �뜝�뙥釉앹삕�뜝�떙�궪�삕*/
 	public int CheckID(JoinMember joinmember) throws Exception{
 		int m_id = sqlSession.selectOne("JoinMemberDao.selectCheckID", joinmember);
 		return m_id;
@@ -108,19 +108,19 @@ public class JoinMemberDaoImpl implements JoinMemberDao{
 	public void stopfriend(Friends friends) throws Exception{
 		sqlSession.delete("JoinMemberDao.stopfriend", friends);
 	}
-	public int insertBoardContent(Board board_contents) throws Exception{
+	public String insertBoardContent(Board board_contents) throws Exception{
 		sqlSession.insert("JoinMemberDao.insertBoardContent", board_contents);
-		int b_seq = board_contents.getBoard_no();
+		String b_seq = board_contents.getBno();
 		return b_seq;
 	} 
 	
-	/*�Խñ� ��ȸ*/
+	/*占쌉시깍옙 占쏙옙회*/
 	public List<Board> listBoardContents(JoinMember joinmember) throws Exception{
 		List<Board> board_contents_list = sqlSession.selectList("JoinMemberDao.selectBoardContent", joinmember);
 		return board_contents_list;
 	}
 	
-	/*�Խù� ����*/
+	/*占쌉시뱄옙 占쏙옙占쏙옙*/
 	public Board deleteBoardContent(Board board) throws Exception{
 		return sqlSession.selectOne("JoinMemberDao.deleteBoardContent", board);
 	}

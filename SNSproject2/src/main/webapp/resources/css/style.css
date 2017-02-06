@@ -1,0 +1,63 @@
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder { /* WebKit browsers */
+  color:transparent;
+}
+ 
+input:focus:-moz-placeholder,
+textarea:focus:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+  color:transparent;
+}
+ 
+input:focus::-moz-placeholder,
+textarea:focus::-moz-placeholder { /* Mozilla Firefox 19+ */
+  color:transparent;
+}
+ 
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder { /* Internet Explorer 10+ */
+  color:transparent;
+}
+
+.placeholder_box {
+    position: relative;
+    margin: 15px 10px;
+}
+
+.placeholder_box input[type="text"] {
+    border: 1px solid #ededed;
+    height: 35px;
+    width: 300px;
+    padding: 13px 15px;
+    box-sizing: border-box;
+    border-radius:0.5em; 
+    -moz-border-radius: 0.5em; /* 둥근 외곽선 브라우저 호환성 */
+   	-webkit-border-radius: 0.5em;
+}
+
+.placeholder_box input[type="password"] {
+    border: 1px solid #ededed;
+    height: 35px;
+    width: 300px;
+    padding: 13px 15px;
+    box-sizing: border-box;
+    border-radius:0.5em;
+    -moz-border-radius: 0.5em; /* 둥근 외곽선 브라우저 호환성 */
+   	-webkit-border-radius: 0.5em;
+}
+
+select{
+	height: 35px;
+	width: 300px; /* 원하는 너비설정 */
+	-moz-border-radius: 0.5em; /* 둥근 외곽선 브라우저 호환성 */
+   	-webkit-border-radius: 0.5em;
+}
+
+.placeholder_box_birth select{
+	margin: 1px 8px;
+	height: 35px;
+	width: 85px; /* 원하는 너비설정 */
+	-moz-border-radius: 0.5em; /* 둥근 외곽선 브라우저 호환성 */
+   	-webkit-border-radius: 0.5em;
+}
+
+

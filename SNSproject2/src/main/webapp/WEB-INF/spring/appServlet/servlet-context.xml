@@ -22,5 +22,7 @@
 	</beans:bean>
 	
 	<context:component-scan base-package="com.manage.biz" />
-	
+	<resources mapping="/img/**" location="/img/" />
+   <resources mapping="/css/**" location="/css/" />
+   <resources mapping="/js/**" location="/js/" />
 </beans:beans>

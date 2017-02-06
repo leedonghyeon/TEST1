@@ -59,20 +59,22 @@ public class JoinMemberController {
         
     }
 	
-    //占싸깍옙占쏙옙 처占쏙옙
-    @RequestMapping("/loginProcess")
-	public String loginProcess(JoinMember user, HttpSession session, Model model) throws Exception {
-    	
-		JoinMember loginUser = joinmemberService.findByUserIdAndPassword(user.getMember_id(), user.getMember_password());
+	@RequestMapping("/loginProcess")
+	   public String loginProcess(JoinMember user, Board board, HttpSession session, HttpServletRequest req, Model model) throws Exception {
+	       
+	      JoinMember loginUser = joinmemberService.findByUserIdAndPassword(user.getMember_id(), user.getMember_password());
 
-		if (loginUser != null) { //session check
-			session.setAttribute("userLoginInfo", loginUser);
-			return "sns/main"; //占싸깍옙占쏙옙 占쏙옙 占싼어가占쏙옙 화占쏙옙
-		}
-		
-		return "sns/FailPage";	//占싸깍옙占쏙옙 占쏙옙占쏙옙 占쏙옙 
+	      if (loginUser != null) { //session check
+	         session.setAttribute("userLoginInfo", loginUser);
+	         List<Board> listboard_contents = joinmemberService.listBoardContents(loginUser);
+	         model.addAttribute("listcontents", listboard_contents);
+	         
+	         return "sns/main"; //로그인 시 넘어가는 화면
+	      }
+	      
+	      return "sns/FailPage";   //로그인 실패 시 
 
-	}
+	   }
     
     // 占싸그아울옙
     @RequestMapping("/logout")
@@ -197,7 +199,6 @@ public class JoinMemberController {
 	//移쒓뎄 �닔�씫�븷 �뿬遺� �쁽�솴
 	@RequestMapping("/allowfriends") 
 	public String allowfriends(Friends friends, Model model) throws Exception {
-
 		joinmemberService.allowfriends(friends);
 		List<Friends> friendslist = joinmemberService.selectfriends(friends);
 		model.addAttribute("friends", friendslist);
@@ -206,7 +207,6 @@ public class JoinMemberController {
 	// 移쒓뎄 �떊泥��븳 �쁽�솴
 	@RequestMapping("/request") 
 	public String Request(Friends friends, Model model) throws Exception {
-		
 		List<Friends> re = joinmemberService.request(friends);
 		model.addAttribute("friends", re);
 		return "sns/Request";
@@ -250,7 +250,7 @@ public class JoinMemberController {
 			
 			model.addAttribute("joinmember", joinmember);
 			JoinMember sessionMember = (JoinMember)session.getAttribute("userLoginInfo");
-			board_contents.setBoard_writer(sessionMember.getMember_id());
+			board_contents.setUno(sessionMember.getMember_no());
 			joinmemberService.insertBoardContent(board_contents);
 			
 			return "redirect:goMain";
@@ -266,5 +266,26 @@ public class JoinMemberController {
 			return "redirect:goMain";
 			
 	    }
+		
+		//main에서 이벤트 업데이트 화면
+	    @RequestMapping("/goMain")
+	   public String goMain(HttpSession session, HttpServletRequest req, Model model) throws Exception {
+	       
+	       JoinMember sessionInfo = (JoinMember)session.getAttribute("userLoginInfo");
+	       
+	      JoinMember loginUser = joinmemberService.findByUserIdAndPassword(sessionInfo.getMember_id(), sessionInfo.getMember_password());
+
+	      if (loginUser != null) { //session check
+	         session.setAttribute("userLoginInfo", loginUser);
+	         Board board = new Board();
+	         List<Board> listboard_contents = joinmemberService.listBoardContents(loginUser);
+	         model.addAttribute("listcontents", listboard_contents);
+	         
+	         return "sns/main"; //로그인 시 넘어가는 화면
+	      }
+	      
+	      return "sns/FailPage";   //로그인 실패 시 
+
+	   }
 }
 

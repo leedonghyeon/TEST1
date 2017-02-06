@@ -1,2 +1,7 @@
 eclipse.preferences.version=1
+encoding//src/main/java/com/manage/biz/controller/JoinMemberController.java=UTF-8
+encoding//src/main/java/com/manage/biz/dao/JoinMemberDao.java=UTF-8
+encoding//src/main/java/com/manage/biz/dao/JoinMemberDaoImpl.java=UTF-8
+encoding//src/main/java/com/manage/biz/service/JoinMemberService.java=UTF-8
+encoding//src/main/java/com/manage/biz/service/JoinMemberServiceImpl.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/sns/JoinMembership.jsp=UTF-8

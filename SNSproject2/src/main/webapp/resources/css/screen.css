@@ -1,0 +1,200 @@
+@CHARSET "UTF-8";
+/*** The Essential Code ***/
+html, body {
+    margin: 0;
+    padding: 0;
+    background-color: #E6E6FA;
+}
+
+#wrap {
+    margin: 0 auto;
+    padding: 0;
+    width: 1200px;
+}
+
+#header {
+    width: 1200px;
+    height: 48px;
+    background-color: white;
+    top:0;
+    position: fixed;
+    border-bottom:1px solid gray;
+}
+
+#image {
+	float: left;
+    width: 280px;
+    margin-left: 3px;
+}
+
+#find {
+	margin-top: 10px;
+	margin-left: 950px;
+}
+
+#container {
+	float: left;
+    width: 100%;
+}
+
+#content {
+	margin-top: 60px;
+    margin-left: 290px;
+    margin-right: 290px;
+}
+
+#sidebar {
+	margin-top: 60px;
+	float: left;
+    width: 280px;
+    margin-left: -1200px;
+    background-color: white;
+}
+
+#extra {
+	margin-top: 60px;
+	float: left;
+    width: 280px;
+    margin-left: -280px; 
+    background-color: white;
+}
+
+/* #footer {
+	clear: both;
+    width: 1200px;
+    height: 70px;
+} */
+
+textarea.autosize{
+	width: 500px;
+	height: 70px;
+	float: right;
+	margin-right: 10px;
+	overflow:visible;
+	resize:none;
+}
+
+#autosize_div {
+	height: auto; 
+	width: 94%; 
+	margin: auto;
+}
+
+#userid {
+	float: left;
+	margin-top: 3px;
+	margin-left: 5px;
+	margin-bottom: 5px;
+}
+
+#menu_button {
+	margin-top: 3px;
+	margin-left: 450px;
+	margin-bottom: 5px;
+	position: absolute;
+	z-index:1;
+}
+
+ul{
+	list-style:none;
+	margin:0px;
+	padding:0px;
+}
+
+.one ul{ /* 2단 메뉴 숨기기 */
+	display:none;
+}
+
+.one li:hover > ul { /* 1단 메뉴에 마우스 오버했을 때 2단 메뉴 드러내기 */
+	display:block;
+}
+
+ul li { /* 각 메뉴의 너비와 배경색 설정 */
+	width:80px;
+	height: 20px;
+	background-color:#B5B2FF;
+} 
+
+li:hover{ /* 메뉴에 마우스 오버했을 때 색상 바꾸기 */
+	background-color:#FFE08C;
+}
+
+/* 링크를 블록 요소로 만들어 너비, 높이 설정하기 */
+ 
+ul li a{
+	display:block; 
+	width:80px;
+	height: 20px;
+	text-decoration:none; /* 링크 밑줄 없애기 */
+	line-height: 20px; /* 세로 중앙정렬 */
+	display:block;
+	text-align:center;
+	font-size: 13px;
+}
+
+textarea.write{
+	width: 500px;
+	height: 50px;
+	float: right;
+	margin-right: 10px;
+}
+
+#write_button {
+	margin-top: 10px;
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+#center_user_content{
+	height: auto;
+	width: 90%;
+	margin: auto;
+	text-align: right;
+	background-color: #E6E6FA;
+}
+
+#content_center{
+	text-align:left;
+	height: auto; 
+	width: 90%; 
+	margin: auto;
+	border-top:1px solid gray;
+	border-left:1px solid gray;
+	border-right:1px solid gray;
+	background-color: white;
+	font-size: 15px;
+	clear:both
+}
+
+/*** Just for Looks ***/
+/* #header, #footer {
+    font-size: large;
+    text-align: center;
+    background: #999;
+}
+
+#main-menu {
+    font-size: large;
+    text-align: center;
+    background: #DAEAAA;
+}
+#content {
+    font-size: large;
+    text-align: center;
+    background: #DDD;
+    height: 100px;
+}
+
+#sidebar {
+    font-size: large;
+    text-align: center;
+    background: #66F;
+    height: 100px;
+}
+
+#extra {
+    font-size: large;
+    text-align: center;
+    background: #F66;
+    height: 100px;
+} */

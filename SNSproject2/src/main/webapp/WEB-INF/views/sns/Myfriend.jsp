@@ -23,26 +23,24 @@ window.onload = function(){
 </script>
 </head>
 <body>
-<form name='form1' action="myfriend">
+<form name='form1'>
 <input type="text" value="${sessionScope.userLoginInfo.member_no}" name="user1">
 <input type="text" name="user2">
 <h1>${sessionScope.userLoginInfo.member_no}의 친구 목록</h1>
 
 <table border="1">
 <tr>
-    <th width="100">친구NAME</th>
-	<th width="100">친구ID</th>
-	<th width="100">친구BIRTH</th>
-	<th width="100">친구SEX</th>
+    <th width="100">친구NO</th>
+     <th width="100">친구name</th>
+	<th width="100">친구TYPE</th>
 	<th width="100">끊기</th>
 </tr>
 <c:forEach var="A" items="${myfriend}">
 <tr>
-	<td align ="center">${A.member_name}</td>
-	<td align ="center">${A.member_id}</td>
-	<td align ="center">${A.member_birth}</td>
-	<td align ="center">${A.member_sex}</td>
-	<td align ="center"><input type="button" value="친구 끊기" onclick="RemoveFriend(${A.member_no})"></td>
+	<td align ="center">${A.USER2}</td>
+	<td align ="center">${A.MEMBER_NAME}</td>
+	<td align ="center">${A.FRIEND_TYPE}</td>
+	<td align ="center"><input type="button" value="친구 끊기" onclick="RemoveFriend(${A.USER2})"></td>
 </tr>
 </c:forEach>
 </table>

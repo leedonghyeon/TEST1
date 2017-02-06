@@ -16,7 +16,7 @@ public class JoinMemberServiceImpl implements JoinMemberService{
 	@Autowired
 	private JoinMemberDao joinmemberDao;
 	
-	//회占쏙옙占쏙옙占쏙옙
+	//�쉶�뜝�룞�삕�뜝�룞�삕�뜝�룞�삕
 	public int insertJoinMember(JoinMember joinmember) throws Exception{
 		int m_seq =  joinmemberDao.insertJoinMember(joinmember);
 		return m_seq;
@@ -30,34 +30,34 @@ public class JoinMemberServiceImpl implements JoinMemberService{
 		return joinmemberDao.selectJoinMember(member_id);
 	}
 
-	//占싸깍옙占쏙옙 처占쏙옙
+	//�뜝�떥源띿삕�뜝�룞�삕 泥섇뜝�룞�삕
     public JoinMember findByUserIdAndPassword(String userId, String password) throws Exception{
 		return joinmemberDao.findByUserIdAndPassword(userId, password);
 	}
     
-    //회占쏙옙탈占쏙옙
+    //�쉶�뜝�룞�삕�깉�뜝�룞�삕
     public JoinMember removeMember(JoinMember member) throws Exception{
     	return joinmemberDao.deleteMemeber(member);
     }
     
-    //占쏙옙橘占싫� 찾占쏙옙
+    //�뜝�룞�삕艅섇뜝�떕占� 李얍뜝�룞�삕
     public int findPassword(JoinMember joinmember)throws Exception{
     	int m_password = joinmemberDao.findPassword(joinmember);
     	return m_password;
     }
     
-    //占쏙옙橘占싫� 占쏙옙占쏙옙
+    //�뜝�룞�삕艅섇뜝�떕占� �뜝�룞�삕�뜝�룞�삕
     public void updatePassword(JoinMember joinmember) throws Exception{
     	joinmemberDao.updatePassword(joinmember);
     }
     
-    //占쏙옙占싱듸옙 占싻쏙옙占쏙옙占쏙옙 占쏙옙치占쏙옙占쏙옙
+    //�뜝�룞�삕�뜝�떛�벝�삕 �뜝�떩�룞�삕�뜝�룞�삕�뜝�룞�삕 �뜝�룞�삕移섇뜝�룞�삕�뜝�룞�삕
     public int matching(JoinMember joinmember) throws Exception {
     	int matching_ok = joinmemberDao.matching(joinmember);
     	return matching_ok;
     }
     
-    //占쏙옙占싱듸옙 占쌩븝옙占싯삼옙
+    //�뜝�룞�삕�뜝�떛�벝�삕 �뜝�뙥釉앹삕�뜝�떙�궪�삕
     public int CheckID(JoinMember joinmember)throws Exception{
     	
     	int m_id = joinmemberDao.CheckID(joinmember);
@@ -97,18 +97,18 @@ public class JoinMemberServiceImpl implements JoinMemberService{
     public void stopfriend(Friends friends) throws Exception{
     	joinmemberDao.stopfriend(friends);
     }
-    public int insertBoardContent(Board board_contents) throws Exception{
-    	int b_seq =  joinmemberDao.insertBoardContent(board_contents);
+    public String insertBoardContent(Board board_contents) throws Exception{
+    	String b_seq =  joinmemberDao.insertBoardContent(board_contents);
 		return b_seq;
     }
 
-    //�Խñ� ��ȸ
+    //占쌉시깍옙 占쏙옙회
     public List<Board> listBoardContents(JoinMember joinmember) throws Exception{
     	List<Board> board_contents_list = joinmemberDao.listBoardContents(joinmember);
     	return board_contents_list;
     }
     
-    //�Խù� ����
+    //占쌉시뱄옙 占쏙옙占쏙옙
     public Board removeBoardContent(Board board_num) throws Exception{
     	return joinmemberDao.deleteBoardContent(board_num);
     }

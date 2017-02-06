@@ -2,9 +2,6 @@ package com.manage.biz.vo;
 
 public class JoinMember {
 	int member_no;
-	int friend_status;
-
-
 	String member_id;
 	String member_password;
 	String member_name;
@@ -18,12 +15,6 @@ public class JoinMember {
 	String member_privacy;
 	
 	
-	public int getFriend_status() {
-		return friend_status;
-	}
-	public void setFriend_status(int friend_status) {
-		this.friend_status = friend_status;
-	}
 	public String getMember_email() {
 		return member_email;
 	}
